@@ -716,6 +716,13 @@ op_handlers["TensorArrayScatterV3"] = passthrough
 op_handlers["TensorArrayReadV3"] = passthrough
 op_handlers["TensorArrayWriteV3"] = passthrough
 
+# NEW
+op_handlers["AddV2"] = passthrough
+op_handlers["StatelessWhile"] = passthrough
+op_handlers["TensorListStack"] = passthrough
+op_handlers["StatelessWhile"] = passthrough
+op_handlers["TensorListFromTensor"] = passthrough
+
 
 # ops that don't pass any attributions to their inputs
 op_handlers["Shape"] = break_dependence
@@ -744,6 +751,9 @@ op_handlers["ClipByValue"] = nonlinearity_1d(0)
 op_handlers["Rsqrt"] = nonlinearity_1d(0)
 op_handlers["Square"] = nonlinearity_1d(0)
 op_handlers["Max"] = nonlinearity_1d(0)
+
+# NEW
+op_handlers["Sin"] = nonlinearity_1d(0)
 
 # ops that are nonlinear and allow two inputs to vary
 op_handlers["SquaredDifference"] = nonlinearity_1d_nonlinearity_2d(0, 1, lambda x, y: (x - y) * (x - y))
